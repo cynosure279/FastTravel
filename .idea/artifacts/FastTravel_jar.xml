@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FastTravel:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FastTravel_jar</output-path>
+    <root id="archive" name="FastTravel.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="FastTravel" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

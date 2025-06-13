@@ -1,4 +1,4 @@
-package com.cynosure.FastTravel.core;
+package com.cynosure.core;
 
 import java.util.*;
 
@@ -10,8 +10,7 @@ public class PosManager {
     public PosManager(){
         posMap = new HashMap<>();
         playerPosList = new HashMap<>();
-        ArrayList<Integer> rootpos = new ArrayList<>();
-        rootpos.add(0);rootpos.add(0);rootpos.add(0);
+        Loc rootpos = new Loc(0,0,0);
         newPos(rootpos,rootpos,rootpos,"null","root");
     }
 
@@ -38,7 +37,7 @@ public class PosManager {
         this.playerPosList.get(playerID).put(posID, true);
     }
 
-    public void newPos(ArrayList<Integer> startPos,ArrayList<Integer> endPos, ArrayList<Integer> tpPos, String fatherID, String posID){
+    public void newPos(Loc startPos,Loc endPos, Loc tpPos, String fatherID, String posID){
         ArrayList<Pos> childs = new ArrayList<>();
         Pos newpos = new Pos(startPos,endPos,tpPos,this.posMap.get(fatherID),childs,posID);
         this.addPos(newpos);
@@ -83,10 +82,10 @@ public class PosManager {
         }
     }
 
-    private ArrayList<Pos> getAllPos(Pos pos){
+    public ArrayList<Pos> getAllPos(Pos pos){
         ArrayList<Pos> ret = new ArrayList<>();
         Pos fat = pos.getFather();
-        ret.addAll(fat.getChilds());
+        if(fat!=null) ret.addAll(fat.getChilds());
         for(Pos p : pos.getChilds()){
             dg(p,ret);
         }

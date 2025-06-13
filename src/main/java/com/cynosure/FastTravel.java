@@ -1,22 +1,21 @@
-package com.cynosure.FastTravel;
+package com.cynosure;
 
-import com.cynosure.FastTravel.core.*;
-import com.cynosure.FastTravel.utils.*;
-import com.cynosure.FastTravel.command.*;
+import com.cynosure.core.*;
+import org.bukkit.plugin.Plugin;
+
 import java.util.*;
 
-public class Main {
+public class FastTravel {
     public static void main(String[] args) {
 
         //System.out.printf("FastTravel");
         PosManager posManager = new PosManager();
 
-        ArrayList<Integer> a = new ArrayList<>();
-        ArrayList<Integer> b = new ArrayList<>();
-        ArrayList<Integer> c = new ArrayList<>();
-        a.add(1);a.add(1);a.add(1);
-        b.add(5);b.add(5);b.add(5);
-        c.add(3);c.add(3);c.add(3);
+        Loc a = new Loc(1,1,1);
+        Loc b = new Loc(5,5,5);
+        Loc c = new Loc(3,3,3);
+
+
         posManager.newPos(a,b,c,"root","test1");
         posManager.addPlayerPos("test1","1");
         posManager.addPlayerPos("test2","1");
@@ -29,12 +28,16 @@ public class Main {
         posManager.newPos(a,b,c,"test2","test5");
         posManager.newPos(a,b,c,"test1","test6");
         posManager.deletePosByID("test3");
-        System.out.println(posManager.getPosMap().get("test1").getEndPos());
-        ArrayList<Pos> tmp = posManager.getPos("1","test1");
+        System.out.println(posManager.getPosMap().get("test1").getEndPos().getALL());
+        ArrayList<Pos> tmp = posManager.getPos("1","root");
+
+        //ArrayList<Pos> t = posManager.getAllPos(posManager.getPosMap().get("root"));
         System.out.println(tmp);
         for(Pos p : tmp){
             System.out.println(p.getPosID());
         }
+
+
 
 
     }

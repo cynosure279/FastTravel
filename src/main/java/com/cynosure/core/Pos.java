@@ -1,14 +1,14 @@
-package com.cynosure.FastTravel.core;
+package com.cynosure.core;
 
 import java.util.ArrayList;
 
 public class Pos {
-    private ArrayList<Integer> startPos,endPos,tpPos;
+    private Loc startPos,endPos,tpPos;
     private Pos father;
     private ArrayList<Pos> childs;
     private String posID;
 
-    public Pos(ArrayList<Integer> startPos,ArrayList<Integer> endPos, ArrayList<Integer> tpPos, Pos father, ArrayList<Pos> childs, String posID) {
+    public Pos(Loc startPos,Loc endPos, Loc tpPos, Pos father, ArrayList<Pos> childs, String posID) {
         this.startPos = startPos;
         this.endPos = endPos;
         this.tpPos = tpPos;
@@ -17,15 +17,15 @@ public class Pos {
         this.posID = posID;
     }
 
-    public ArrayList<Integer> getEndPos() {
+    public Loc getEndPos() {
         return endPos;
     }
 
-    public ArrayList<Integer> getStartPos() {
+    public Loc getStartPos() {
         return startPos;
     }
 
-    public ArrayList<Integer> getTpPos() {
+    public Loc getTpPos() {
         return tpPos;
     }
 
