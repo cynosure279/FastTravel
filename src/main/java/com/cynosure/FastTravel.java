@@ -30,7 +30,7 @@ public class FastTravel extends JavaPlugin {
         instance = this;
         getLogger().info("FastTravel plugin enabled!");
         this.posManager = com.cynosure.core.PosManager.getInstance();
-        this.timedTask = com.cynosure.extra.TimedTask.getInstance(posManager,instance);
+        this.timedTask = com.cynosure.extra.TimedTask.getInstance(posManager,instance,"world");
         this.commandManager = com.cynosure.command.CommandManager.getInstance(instance, posManager,"world");
         commandManager.Enable();
         getLogger().info("FastTravel Commands registered!");

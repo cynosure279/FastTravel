@@ -38,6 +38,10 @@ public class PosManager {
         return posMap;
     }
 
+    public ArrayList<Pos> getPosList() {
+        return new ArrayList<>(posMap.values());
+    }
+
     private void addPos(Pos pos){
         this.posMap.put(pos.getPosID(),pos);
 //        System.out.println("===========");
@@ -137,5 +141,18 @@ public class PosManager {
     public void addPosAlways(String posID,String text){
         extraAlways.put(posID,text);
     }
+    public String getPosfirst(String posID){
+        if(extraFirst.containsKey(posID)){
+            return extraFirst.get(posID);
+        }
+        return "你已进入"+posID;
+    }
+    public String getPosAlways(String posID){
+        if(extraAlways.containsKey(posID)) {
+            return extraAlways.get(posID);
+        }
+        return "你已进入"+posID;
+    }
+
 
 }

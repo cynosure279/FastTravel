@@ -48,4 +48,7 @@ public class Pos {
     }
 
 
+    public boolean getPerm() {
+        return Perm;
+    }
 }
