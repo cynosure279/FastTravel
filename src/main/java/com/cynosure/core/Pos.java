@@ -7,14 +7,16 @@ public class Pos {
     private Pos father;
     private ArrayList<Pos> childs;
     private String posID;
+    private Boolean Perm ;
 
-    public Pos(Loc startPos,Loc endPos, Loc tpPos, Pos father, ArrayList<Pos> childs, String posID) {
+    public Pos(Loc startPos,Loc endPos, Loc tpPos, Pos father, ArrayList<Pos> childs, String posID,Boolean Perm) {
         this.startPos = startPos;
         this.endPos = endPos;
         this.tpPos = tpPos;
         this.father = father;
         this.childs = childs;
         this.posID = posID;
+        this.Perm = Perm;
     }
 
     public Loc getEndPos() {
@@ -41,7 +43,7 @@ public class Pos {
         return posID;
     }
 
-    public void addChid(Pos child){
+    public void addChild(Pos child){
         this.getChilds().add(child);
     }
 

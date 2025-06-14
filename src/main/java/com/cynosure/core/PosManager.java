@@ -7,11 +7,23 @@ import org.apache.commons.collections4.CollectionUtils;
 public class PosManager {
     private HashMap<String,Pos> posMap;
     private HashMap<String,HashMap<String,Boolean>> playerPosList;
-    public PosManager(){
+    private static PosManager instance;
+    private PosManager(){
         posMap = new HashMap<>();
         playerPosList = new HashMap<>();
         Loc rootpos = new Loc(0,0,0);
-        newPos(rootpos,rootpos,rootpos,"null","root");
+        newPos(rootpos,rootpos,rootpos,"null","root",false);
+    }
+
+    public static PosManager getInstance() {
+        if(instance == null){
+            synchronized (PosManager.class){
+                if(instance == null){
+                    instance = new PosManager();
+                }
+            }
+        }
+        return instance;
     }
 
     public HashMap<String,HashMap<String,Boolean>> getPlayerPosList() {
@@ -37,12 +49,19 @@ public class PosManager {
         this.playerPosList.get(playerID).put(posID, true);
     }
 
-    public void newPos(Loc startPos,Loc endPos, Loc tpPos, String fatherID, String posID){
+    private void newPos(Loc startPos,Loc endPos, Loc tpPos, String fatherID, String posID,Boolean perm){
         ArrayList<Pos> childs = new ArrayList<>();
-        Pos newpos = new Pos(startPos,endPos,tpPos,this.posMap.get(fatherID),childs,posID);
+        Pos newpos = new Pos(startPos,endPos,tpPos,this.posMap.get(fatherID),childs,posID,perm);
         this.addPos(newpos);
         Pos fat = newpos.getFather();
-        if(fat!=null) fat.addChid(newpos);
+        if(fat!=null) fat.addChild(newpos);
+    }
+
+    public void newPos(int sx,int sy,int sz,int ex,int ey,int ez,int tpx,int tpy,int tpz,String fatherID,String posID,Boolean perm){
+        Loc startPos = new Loc(sx,sy,sz);
+        Loc endPos = new Loc(ex,ey,ez);
+        Loc tpPos = new Loc(tpx,tpy,tpz);
+        newPos(startPos,endPos,tpPos,fatherID,posID,perm);
     }
 
     public void deletePosByID(String posID) {

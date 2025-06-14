@@ -1,31 +1,41 @@
 main: com.cynosure.FastTravel
 name: FastTravel
 version: 1.0-SNAPSHOT
-api-version: 1.20.1
+api-version: 1.19
+description: 快速旅行插件for Minecraft 1.20.1 BukkitAPI
+author: Cynosure
+website: https://github.com/cynosure279/FastTravel
 
-Commands:
+commands:
   createpos:
     description: 注册一个导航点
-    usage: /<command> [开始坐标组] [结束坐标组] [传送坐标组] [String:导航点名称] [String:父亲节点]
+    usage: /<command> <Sx> <Sy> <Sz> <Sx> <Sy> <Sz> <Sx> <Sy> <Sz> <父亲节点ID> <节点ID> <是否启用保护1/0>
     permission-message: 你没有权限执行此指令
-    permission: xxx
+    permission: FastTravel.admin
   deletepos:
     description: 删除一个导航点
-    usage: /<command> [String:删除导航点的名称]
+    usage: /<command> <String:删除导航点的名称>
     permission-message: 你没有权限执行此指令
-    permission: xxx
+    permission: FastTravel.admin
   travel:
     description: 启动快速旅行
-    usage: /<command> [String:合法的导航点名称]
-    permission: xxx
+    usage: /<command> <String:合法的导航点名称>
+    permission: FastTravel.all
     permission-message: 你没有权限执行此指令
   travelGUI:
     description: 启动快速旅行GUI界面
     usage: /<command>
-    permission: xxx
+    permission: FastTravel.all
     permission-message: 你没有权限执行此指令
   travelPlayer:
     description: 为玩家启动旅行GUI
-    usage: /<command> [player] [String:出发导航点名称]
-    permission: xxx
+    usage: /<command> <player> <String:出发导航点名称>
+    permission: FastTravel.admin
     permission-message: 你没有权限执行此指令
+permissions:
+  FastTravel.admin:
+    description: 管理员/命令方块可调用的指令
+    default: op
+  FastTravel.all:
+    description: 所有人可使用的命令
+    default: true
