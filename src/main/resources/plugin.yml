@@ -9,7 +9,7 @@ website: https://github.com/cynosure279/FastTravel
 commands:
   createpos:
     description: 注册一个导航点
-    usage: /<command> <Sx> <Sy> <Sz> <Sx> <Sy> <Sz> <Sx> <Sy> <Sz> <父亲节点ID> <节点ID> <是否启用保护1/0>
+    usage: /<command> <Sx> <Sy> <Sz> <Ex> <Ey> <Ez> <Tx> <Ty> <Tz> <父亲节点ID> <节点ID> <是否启用保护1/0>
     permission-message: 你没有权限执行此指令
     permission: FastTravel.admin
   deletepos:
@@ -30,6 +30,11 @@ commands:
   travelPlayer:
     description: 为玩家启动旅行GUI
     usage: /<command> <player> <String:出发导航点名称>
+    permission: FastTravel.admin
+    permission-message: 你没有权限执行此指令
+  addPlayerPos:
+    description: 为玩家解锁某个导航点(正常情况下请勿手动使用此命令)
+    usage: /<command> <player> <String:导航点名称>
     permission: FastTravel.admin
     permission-message: 你没有权限执行此指令
 permissions:

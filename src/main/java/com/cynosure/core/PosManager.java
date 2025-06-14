@@ -7,10 +7,14 @@ import org.apache.commons.collections4.CollectionUtils;
 public class PosManager {
     private HashMap<String,Pos> posMap;
     private HashMap<String,HashMap<String,Boolean>> playerPosList;
+    private HashMap<String,String> extraFirst,extraAlways;
     private static PosManager instance;
+
     private PosManager(){
         posMap = new HashMap<>();
         playerPosList = new HashMap<>();
+        extraFirst = new HashMap<>();
+        extraAlways = new HashMap<>();
         Loc rootpos = new Loc(0,0,0);
         newPos(rootpos,rootpos,rootpos,"null","root",false);
     }
@@ -101,7 +105,7 @@ public class PosManager {
         }
     }
 
-    public ArrayList<Pos> getAllPos(Pos pos){
+    private ArrayList<Pos> getAllPos(Pos pos){
         ArrayList<Pos> ret = new ArrayList<>();
         Pos fat = pos.getFather();
         if(fat!=null) ret.addAll(fat.getChilds());
@@ -111,7 +115,7 @@ public class PosManager {
         return ret;
     }
 
-    public ArrayList<Pos> getPlayerPos(String UUID){
+    private ArrayList<Pos> getPlayerPos(String UUID){
         ArrayList<Pos> ret = new ArrayList<>();
         for(Map.Entry<String,Boolean> p : playerPosList.get(UUID).entrySet()){
             if(p.getValue()==true){
@@ -125,6 +129,13 @@ public class PosManager {
     public ArrayList<Pos> getPos(String UUID,String posID){
         Pos tmp = this.posMap.get(posID);
         return new ArrayList<>(CollectionUtils.intersection(getPlayerPos(UUID),getAllPos(tmp)));
+    }
+
+    public void addPosfirst(String posID,String text){
+        extraFirst.put(posID,text);
+    }
+    public void addPosAlways(String posID,String text){
+        extraAlways.put(posID,text);
     }
 
 }
