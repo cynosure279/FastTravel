@@ -1,6 +1,5 @@
 package com.cynosure.command;
 
-import com.cynosure.core.PosManager;
 import com.cynosure.core.PosManagerSafe;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

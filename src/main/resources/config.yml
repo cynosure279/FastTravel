@@ -1,0 +1,40 @@
+# ===============================================
+# FastTravel Plugin Configuration
+# This file contains various settings for the FastTravel plugin.
+# You can modify these values to customize plugin behavior.
+# After making changes, save the file and use /ftreloadconfig
+# or restart your server for changes to take effect.
+# ===============================================
+
+# General Settings for FastTravel Plugin
+general-settings:
+  # The ID of the primary world where FastTravel points are active.
+  # Players will only be checked for proximity to Pos points in this world.
+  # This should typically be your server's main overworld (e.g., "world").
+  target-world-id: "world"
+
+  # The prefix for all messages sent by the FastTravel plugin.
+  # Supports Bukkit color codes (e.g., &c for red, &a for green).
+  plugin-prefix: "&9[FastTravel]&r "
+
+# Data Storage Settings
+data-settings:
+  # The name of the data file where FastTravel points and player unlocks are stored.
+  # This file will be located in your plugin's data folder (plugins/FastTravel/).
+  # Changing this will effectively create a new, empty dataset for FastTravel points.
+  data-file-name: "data.yml"
+
+# Timed Task Settings
+# These settings control the background task that checks player positions
+# to detect entry into FastTravel points and trigger messages/unlocks.
+timed-task-settings:
+  # The interval (in ticks) at which the plugin checks for player positions.
+  # 20 ticks = 1 second.
+  # A lower value means more frequent checks but higher server load.
+  # Recommended: 100-200 ticks (5-10 seconds)
+  interval-ticks: 200
+
+  # The initial delay (in ticks) before the timed task starts running after plugin enables.
+  # This gives the server some time to load chunks and worlds before checks begin.
+  # Recommended: 60-100 ticks (3-5 seconds)
+  first-delay-ticks: 60
