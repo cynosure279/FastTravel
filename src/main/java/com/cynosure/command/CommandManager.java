@@ -1,6 +1,7 @@
 package com.cynosure.command;
 
 import com.cynosure.core.PosManager;
+import com.cynosure.core.PosManagerSafe;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,13 +13,13 @@ public class CommandManager {
     private final CommandList commandList;
     private static  CommandManager instance;
     private final String worldID;
-    private CommandManager(JavaPlugin plugin, PosManager posManager, String worldID){
+    private CommandManager(JavaPlugin plugin, PosManagerSafe posManager, String worldID){
         this.plugin = plugin;
         //this.posManager = posManager;
         this.worldID = worldID;
         this.commandList = com.cynosure.command.CommandList.getInstance(plugin, posManager,worldID);
     }
-    public static CommandManager getInstance(JavaPlugin plugin, PosManager posManager, String worldID){
+    public static CommandManager getInstance(JavaPlugin plugin, PosManagerSafe posManager, String worldID){
         if(instance == null){
             synchronized (CommandManager.class){
                 if(instance == null){

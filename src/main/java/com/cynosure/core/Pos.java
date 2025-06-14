@@ -47,5 +47,9 @@ public class Pos {
         this.getChilds().add(child);
     }
 
+    public Boolean getPerm() {
+        return Perm;
+    }
+
 
 }

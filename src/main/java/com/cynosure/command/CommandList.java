@@ -2,6 +2,7 @@ package com.cynosure.command;
 
 import com.cynosure.core.Pos;
 import com.cynosure.core.PosManager;
+import com.cynosure.core.PosManagerSafe;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,17 +21,17 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class CommandList {
-    private final PosManager posManager;
+    private final PosManagerSafe posManager;
     private static CommandList instance;
     private final JavaPlugin plugin;
     private final String worldID;
-    private CommandList(JavaPlugin plugin, PosManager posManager, String worldID) {
+    private CommandList(JavaPlugin plugin, PosManagerSafe posManager, String worldID) {
         this.posManager = posManager;
         this.plugin = plugin;
         this.worldID = worldID;
         plugin.getLogger().info("CommandList Created！");
     }
-    public static CommandList getInstance(JavaPlugin plugin, PosManager posManager,String worldID){
+    public static CommandList getInstance(JavaPlugin plugin, PosManagerSafe posManager, String worldID){
         if(instance == null){
             synchronized (CommandList.class){
                 if(instance == null){
