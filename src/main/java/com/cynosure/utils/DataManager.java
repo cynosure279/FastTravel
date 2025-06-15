@@ -182,7 +182,7 @@ public class DataManager {
             posSection.set("tpPos.z", pos.getTpPos().getZ());
 
             posSection.set("fatherID", (pos.getFather() != null) ? pos.getFather().getPosID() : "null");
-            posSection.set("perm", pos.getPerm());
+            posSection.set("perm", pos.isPerm());
         }
         try {
             config.save(posMapFile);

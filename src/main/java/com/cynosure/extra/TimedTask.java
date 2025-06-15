@@ -86,7 +86,7 @@ public class TimedTask {
                             final Pos finalDetectedPos = detectedPosInLoop; // 这是一个 effectively final 的变量
                             Bukkit.getScheduler().runTask(plugin,()-> {
                                 if (!player.isOp()) { // 非OP玩家才进行游戏模式限制
-                                    if (finalDetectedPos.getPerm()) { // 如果需要冒险模式
+                                    if (finalDetectedPos.isPerm()) { // 如果需要冒险模式
                                         if(player.getGameMode() != GameMode.ADVENTURE) {
                                             player.setGameMode(GameMode.ADVENTURE);
                                         }
