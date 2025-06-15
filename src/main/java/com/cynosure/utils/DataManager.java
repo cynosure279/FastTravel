@@ -48,7 +48,7 @@ public class DataManager {
         return instance;
     }
 
-    public void loadAllData() {
+    public synchronized void loadAllData() {
         plugin.getLogger().info("Loading plugin data...");
         loadPosMap();
         loadPlayerPosList();
@@ -56,7 +56,7 @@ public class DataManager {
         plugin.getLogger().info("All plugin data loaded.");
     }
 
-    public void saveAllData() {
+    public synchronized void saveAllData() {
         plugin.getLogger().info("Saving plugin data...");
         savePosMap();
         savePlayerPosList();
