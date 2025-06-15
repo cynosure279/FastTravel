@@ -1,5 +1,6 @@
 package com.cynosure;
 
+import com.cynosure.command.CommandList;
 import com.cynosure.command.CommandManager;
 import com.cynosure.core.*;
 import com.cynosure.extra.AutoSaverTask;
@@ -20,11 +21,19 @@ public class FastTravel extends JavaPlugin {
     private ConfigManager configManager;
     private DataManager dataManager;
     private AutoSaverTask autoSaverTask;
+    private String worldID;
 
     public static FastTravel getInstance(){
         return instance;
     }
 
+    public String worldIDGetter(){
+        return worldID;
+    }
+
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
 
     @Override
     public void onLoad(){
@@ -40,7 +49,7 @@ public class FastTravel extends JavaPlugin {
         configManager.loadConfig();
         long duartion = configManager.getTimedTaskInterval();
         long delay = configManager.getTimedTaskInitialDelay();
-        String worldID = configManager.getWorldID();
+        this.worldID = configManager.getWorldID();
         String extraDataFilePath= configManager.getExtraDataFilePath();
         String posMapFilePath= configManager.getPosMapFilePath();
         String playerPosListFilePath = configManager.getPlayerPosListFilePath();

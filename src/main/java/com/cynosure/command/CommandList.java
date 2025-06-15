@@ -97,7 +97,7 @@ public class CommandList {
         commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a删除成功！"));
         return true;
     }
-    private Boolean processPlayerCost(Player player){
+    public Boolean processPlayerCost(Player player){
         Inventory inventory = player.getInventory();
         int tcnt = 0;
         int cnt = 5;

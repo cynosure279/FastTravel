@@ -168,7 +168,7 @@ public class PosManager {
         return new ArrayList<>(CollectionUtils.intersection(getPlayerPos(UUID), getAllPos(tmp)));
     }
 
-    private ArrayList<Pos> getPlayerPos(String UUID){
+    public ArrayList<Pos> getPlayerPos(String UUID){
         ArrayList<Pos> ret = new ArrayList<>();
         ConcurrentMap<String, Boolean> playerSpecificPos = playerPosList.get(UUID);
         if (playerSpecificPos != null) {
