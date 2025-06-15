@@ -1,0 +1,11 @@
+# FastTravel 插件的默认配置
+timedtask:
+  world_id: world
+  interval_ticks: 20
+  initial_delay_ticks: 60
+data:
+  pos_map_file_path: data/posmap.yml
+  player_pos_list_file_path: data/playerposlist.yml
+  extra_data_file_path: data/extrashorts.yml
+autosave: # 新增此部分
+  interval_minutes: 5 # 默认每 5 分钟自动保存一次

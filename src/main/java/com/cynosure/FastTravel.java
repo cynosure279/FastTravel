@@ -2,7 +2,10 @@ package com.cynosure;
 
 import com.cynosure.command.CommandManager;
 import com.cynosure.core.*;
+import com.cynosure.extra.AutoSaverTask;
 import com.cynosure.extra.TimedTask;
+import com.cynosure.utils.ConfigManager;
+import com.cynosure.utils.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,6 +17,9 @@ public class FastTravel extends JavaPlugin {
     private PosManager posManager;
     private CommandManager commandManager;
     private TimedTask timedTask;
+    private ConfigManager configManager;
+    private DataManager dataManager;
+    private AutoSaverTask autoSaverTask;
 
     public static FastTravel getInstance(){
         return instance;
@@ -29,13 +35,26 @@ public class FastTravel extends JavaPlugin {
     public void onEnable(){
         instance = this;
         getLogger().info("FastTravel plugin enabled!");
+        this.configManager = com.cynosure.utils.ConfigManager.getInstance(this);
         this.posManager = com.cynosure.core.PosManager.getInstance();
-        this.timedTask = com.cynosure.extra.TimedTask.getInstance(posManager,instance,"world");
-        this.commandManager = com.cynosure.command.CommandManager.getInstance(instance, posManager,"world");
+        configManager.loadConfig();
+        long duartion = configManager.getTimedTaskInterval();
+        long delay = configManager.getTimedTaskInitialDelay();
+        String worldID = configManager.getWorldID();
+        String extraDataFilePath= configManager.getExtraDataFilePath();
+        String posMapFilePath= configManager.getPosMapFilePath();
+        String playerPosListFilePath = configManager.getPlayerPosListFilePath();
+        int autosave = configManager.getAutoSaveIntervalMinutes();
+        this.dataManager = com.cynosure.utils.DataManager.getInstance(this,posManager,posMapFilePath,playerPosListFilePath,extraDataFilePath);
+        dataManager.loadAllData();
+        this.timedTask = com.cynosure.extra.TimedTask.getInstance(posManager,instance,worldID,duartion,delay);
+        this.commandManager = com.cynosure.command.CommandManager.getInstance(instance, posManager,worldID);
+        this.autoSaverTask = com.cynosure.extra.AutoSaverTask.getInstance(this,dataManager);
         commandManager.Enable();
         getLogger().info("FastTravel Commands registered!");
         timedTask.runTask();
         getLogger().info("FastTravel TimedTask started!");
+        autoSaverTask.run();
     }
 
     public void onDisable(){
@@ -43,6 +62,7 @@ public class FastTravel extends JavaPlugin {
             timedTask.stopTask();
             getLogger().info("FastTravel TimedTask ended!");
         }
+        dataManager.saveAllData();
         getLogger().info("FastTravel plugin disabled!");
 
     }
