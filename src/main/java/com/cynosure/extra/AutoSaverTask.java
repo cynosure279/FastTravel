@@ -12,11 +12,11 @@ public class AutoSaverTask extends BukkitRunnable {
     private long saveIntervalTicks; // 保存间隔，单位：tick
 
     // 私有构造函数，防止外部直接实例化
-    private AutoSaverTask(JavaPlugin plugin, DataManager dataManager) {
+    private AutoSaverTask(JavaPlugin plugin, DataManager dataManager, long saveIntervalTicks) {
         this.plugin = plugin;
         this.dataManager = dataManager;
         // 默认保存间隔，例如 5 分钟 (5 * 60 * 20 ticks)
-        this.saveIntervalTicks = 5 * 60 * 20L;
+        this.saveIntervalTicks = saveIntervalTicks;
     }
 
     /**
@@ -25,11 +25,11 @@ public class AutoSaverTask extends BukkitRunnable {
      * @param dataManager DataManager 单例实例
      * @return AutoSaverTask 的单例实例
      */
-    public static AutoSaverTask getInstance(JavaPlugin plugin, DataManager dataManager) {
+    public static AutoSaverTask getInstance(JavaPlugin plugin, DataManager dataManager, long saveIntervalTicks) {
         if (instance == null) {
             synchronized (AutoSaverTask.class) {
                 if (instance == null) {
-                    instance = new AutoSaverTask(plugin, dataManager);
+                    instance = new AutoSaverTask(plugin, dataManager, saveIntervalTicks);
                 }
             }
         }

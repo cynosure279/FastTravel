@@ -58,12 +58,12 @@ public class FastTravel extends JavaPlugin {
         dataManager.loadAllData();
         this.timedTask = com.cynosure.extra.TimedTask.getInstance(posManager,instance,worldID,duartion,delay);
         this.commandManager = com.cynosure.command.CommandManager.getInstance(instance, posManager,worldID);
-        this.autoSaverTask = com.cynosure.extra.AutoSaverTask.getInstance(this,dataManager);
+        this.autoSaverTask = com.cynosure.extra.AutoSaverTask.getInstance(this,dataManager,autosave);
         commandManager.Enable();
         getLogger().info("FastTravel Commands registered!");
         timedTask.runTask();
         getLogger().info("FastTravel TimedTask started!");
-        autoSaverTask.run();
+        autoSaverTask.startAutoSaving();
     }
 
     public void onDisable(){
@@ -71,6 +71,7 @@ public class FastTravel extends JavaPlugin {
             timedTask.stopTask();
             getLogger().info("FastTravel TimedTask ended!");
         }
+        autoSaverTask.stopAutoSaving();
         dataManager.saveAllData();
         getLogger().info("FastTravel plugin disabled!");
 
